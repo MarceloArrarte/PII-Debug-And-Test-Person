@@ -6,16 +6,44 @@ namespace Tests
 {
     public class Tests
     {
-        [SetUp]
-        public void Setup()
+        [Test]
+        public void TestName()
         {
-            // Insertá tu código de inicialización aquí
+            Person p = new Person("Marcelo", "5.068.112-9", "24/12/2000");
+            string expected = "Marcelo";
+            Assert.AreEqual(expected, p.Name);
         }
 
         [Test]
-        public void Test1() // Cambiá el nombre para indicar qué estás probando
+        public void TestValidId()
         {
-            // Insertá tu código  de pruebaaquí
+            Person p = new Person("Marcelo", "5.068.112-9", "24/12/2000");
+            string expected = "5.068.112-9";
+            Assert.AreEqual(expected, p.ID);
+        }
+
+        [Test]
+        public void TestWrongId()
+        {
+            Person p = new Person("Marcelo", "1.234.567-8", "24/12/2000");
+            string expected = null;
+            Assert.AreEqual(expected, p.ID);
+        }
+
+        [Test]
+        public void TestValidDoB()
+        {
+            Person p = new Person("Marcelo", "1.234.567-8", "24/12/2000");
+            string expected = "24/12/2000";
+            Assert.AreEqual(expected, p.FechaNacimiento);
+        }
+
+        [Test]
+        public void TestWrongDoB()
+        {
+            Person p = new Person("Marcelo", "1.234.567-8", "8/13/1988");
+            string expected = "1/1/1900";
+            Assert.AreEqual(expected, p.FechaNacimiento);
         }
     }
 }
